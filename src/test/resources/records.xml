@@ -1,4 +1,11 @@
 <records>
+  <record reference="194261">
+    <accountNumber>NL91RABO0315273637</accountNumber>
+    <description>Clothes from Jan Bakker</description>
+    <startBalance>21.6</startBalance>
+    <mutation>-20.23</mutation>
+    <endBalance>-41.83</endBalance>
+  </record>
   <record reference="130498">
     <accountNumber>NL69ABNA0433647324</accountNumber>
     <description>Tickets for Peter Theuß</description>

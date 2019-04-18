@@ -1,6 +1,6 @@
 package com.rabobank.services.impl;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -19,9 +19,9 @@ public class ValidationServiceImpl implements ValidationService {
 	@Override
 	public boolean validateDuplicate(Record record) {
 		if (record != null) {
-			Optional<CustomerStatements> statement = customerStatementsRepository.findById(record.getReference());
-			record.setIsUniqueStatement(!statement.isPresent());
-			return statement.isPresent();
+			List<CustomerStatements> statement = customerStatementsRepository.findByReference(record.getReference());
+			record.setIsUniqueStatement(statement.isEmpty());
+			return record.getIsUniqueStatement();
 		}
 		return false;
 	}

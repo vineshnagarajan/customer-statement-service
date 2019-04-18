@@ -7,6 +7,8 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.opencsv.bean.CsvBindByName;
+
 /**
  * @author vinesh
  *
@@ -18,11 +20,17 @@ public class Record {
 	 * 
 	 */
 	@XmlAttribute
+	@CsvBindByName
 	private Long reference;
+	@CsvBindByName
 	private String accountNumber;
+	@CsvBindByName(column = "Start Balance")
 	private BigDecimal startBalance;
+	@CsvBindByName
 	private BigDecimal mutation;
+	@CsvBindByName
 	private String description;
+	@CsvBindByName(column = "End Balance")
 	private BigDecimal endBalance;
 	private boolean isValidEndBalance;
 	private Boolean isUniqueStatement;

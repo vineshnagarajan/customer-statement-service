@@ -30,7 +30,7 @@ public class StatementFactory {
 	@Qualifier("xmlwriter")
 	StatementWriter xmlwriter;
 
-	public StatementReader<Records>  getFileReader(MultipartFile inputFile) {
+	public StatementReader<Records> getFileReader(MultipartFile inputFile) {
 		StatementFileType fileType = StatementFileType.getFileType(inputFile.getOriginalFilename());
 		switch (fileType) {
 		case CSV:

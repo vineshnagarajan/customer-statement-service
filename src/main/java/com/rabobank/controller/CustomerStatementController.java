@@ -16,8 +16,8 @@ import com.rabobank.services.StatementProcessorService;
 
 @RestController
 @RequestMapping("/rabo")
-public class StatementController {
-	private static final Logger logger = LoggerFactory.getLogger(StatementController.class);
+public class CustomerStatementController {
+	private static final Logger logger = LoggerFactory.getLogger(CustomerStatementController.class);
 
 	@Autowired
 	StatementProcessorService statementProcessor;

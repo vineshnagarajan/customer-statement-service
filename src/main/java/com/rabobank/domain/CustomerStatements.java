@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -12,6 +14,10 @@ import javax.persistence.Table;
 public class CustomerStatements {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "CUSTOMER_ID")
+	private Long customerId;
+
 	@Column(name = "REFERENCE")
 	private Long reference;
 
@@ -35,6 +41,14 @@ public class CustomerStatements {
 
 	@Column(name = "IS_UNIQUE_STATEMENT")
 	private Boolean isUniqueStatement;
+
+	public Long getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(Long customerId) {
+		this.customerId = customerId;
+	}
 
 	public Long getReference() {
 		return reference;

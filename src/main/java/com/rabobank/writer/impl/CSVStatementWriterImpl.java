@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import com.opencsv.CSVWriter;
 import com.opencsv.bean.StatefulBeanToCsv;
 import com.opencsv.bean.StatefulBeanToCsvBuilder;
-import com.rabobank.controller.StatementController;
+import com.rabobank.controller.CustomerStatementController;
 import com.rabobank.domain.CustomerStatements;
 import com.rabobank.repository.CustomerStatementsRepository;
 import com.rabobank.writer.StatementWriter;
@@ -19,7 +19,7 @@ import com.rabobank.writer.StatementWriter;
 @Component(value = "csvwriter")
 public class CSVStatementWriterImpl implements StatementWriter {
 
-	private static final Logger logger = LoggerFactory.getLogger(StatementController.class);
+	private static final Logger logger = LoggerFactory.getLogger(CustomerStatementController.class);
 
 	@Autowired
 	CustomerStatementsRepository customerStatementsRepository;
@@ -38,7 +38,7 @@ public class CSVStatementWriterImpl implements StatementWriter {
 			writer.write(customerStatementsRepository.findAll());
 
 		} catch (Exception e) {
-			logger.error("Excveption on Writing Output", e);
+			logger.info("Excveption on Writing Output", e);
 		}
 	}
 }

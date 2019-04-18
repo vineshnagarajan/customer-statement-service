@@ -7,18 +7,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.rabobank.controller.StatementController;
 import com.rabobank.domain.CustomerStatements;
 import com.rabobank.domain.Records;
+import com.rabobank.enums.StatementFileType;
+import com.rabobank.exception.FileFormatException;
 import com.rabobank.factory.StatementFactory;
 import com.rabobank.repository.CustomerStatementsRepository;
-import com.rabobank.services.ValidationService;
 import com.rabobank.services.StatementProcessorService;
+import com.rabobank.services.ValidationService;
 
 @Service
 public class StatementProcessorServiceImpl implements StatementProcessorService {
 
-	private static final Logger logger = LoggerFactory.getLogger(StatementController.class);
+	private static final Logger logger = LoggerFactory.getLogger(StatementProcessorServiceImpl.class);
 
 	@Autowired
 	StatementFactory statementFactory;
@@ -31,7 +32,7 @@ public class StatementProcessorServiceImpl implements StatementProcessorService 
 
 	@Override
 	public void process(MultipartFile file) {
-		
+
 		try {
 			Records statements = (Records) statementFactory.getFileReader(file).readStatement(file);
 			statements.getRecords().parallelStream().forEach(record -> {
@@ -47,8 +48,11 @@ public class StatementProcessorServiceImpl implements StatementProcessorService 
 				customerStatementsRepository.save(statments);
 
 			});
-		} catch (Exception e) {
+		} catch (FileFormatException e) {
 			logger.error(e.getMessage());
+
+			throw new FileFormatException(StatementFileType.FILE_TYPE_NOT_SUPPORTED);
+
 		}
 
 	}
