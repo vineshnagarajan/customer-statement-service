@@ -32,17 +32,17 @@
 ## Configurations: 
 
   #### Sl4J : Application.properties
-  logging.level.org.springframework.web=ERROR
-  logging.level.com.rabobank=INFO
-  logging.file=logs/application.log
+  - logging.level.org.springframework.web=ERROR
+  - logging.level.com.rabobank=INFO
+  - logging.file=logs/application.log
   
   #### H2 DB : Application.properties
-  spring.h2.console.enabled=true
-  spring.h2.console.path=/h2
-  spring.datasource.url=jdbc:h2:file:~/test
-  spring.datasource.username=sa
-  spring.datasource.password=
-  spring.datasource.driver-class-name=org.h2.Driver  
+  - spring.h2.console.enabled=true
+  - spring.h2.console.path=/h2
+  - spring.datasource.url=jdbc:h2:file:~/test
+  - spring.datasource.username=sa
+  - spring.datasource.password=
+  - spring.datasource.driver-class-name=org.h2.Driver  
   
   #### Junit Test resource file package : src.test.resources
 	  
@@ -65,11 +65,30 @@
   
   4) ResponseBody will have downloadable report file with name "OutputReport.csv" or "OutputReport.xml" based on input 
   
-  5) Use H2 Db console url to check data in in-mem database : http://localhost:8080/h2/login.jsp
+  5) for Unsupported input file format , below json response will be give 
+  ```
+  Response Body
+	{
+	  "description": "UnSupported File Format , File format should be CSV or XML",
+	  "error": "Incorrect File Format"
+	}
+  ```
+  
+  6) Use H2 Db console url to check data in in-mem database : http://localhost:8080/h2/login.jsp
      -> console will have default connection strings , click connect button 
      -> CUSTOMER_STATEMENTS  is a table name which holds all validated data 
      
   #### run Junit:   
     * mvnw test / mvn test 
+    
+    ```
+	[INFO] Results:
+	[INFO]
+	[INFO] Tests run: 14, Failures: 0, Errors: 0, Skipped: 0
+	[INFO]
+	[INFO] ------------------------------------------------------------------------
+	[INFO] BUILD SUCCESS
+	[INFO] ------------------------------------------------------------------------
+    ```
 
   
