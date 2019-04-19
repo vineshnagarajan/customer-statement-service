@@ -6,6 +6,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.io.IOUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.multipart.MultipartFile;
@@ -37,6 +40,8 @@ public class StatementFactoryTest {
 	MultipartFile xmlFile;
 
 	MultipartFile wrongFile;
+
+	HttpServletResponse httpServletResponse = new MockHttpServletResponse();
 
 	@Before
 	public void init() {
@@ -80,4 +85,11 @@ public class StatementFactoryTest {
 
 	}
 
+	@Test(expected = FileFormatException.class)
+
+	public void getFileWriterUnSupportedTest() {
+
+		statementFactory.getFileWriter(wrongFile);
+
+	}
 }

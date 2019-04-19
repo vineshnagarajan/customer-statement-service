@@ -83,12 +83,7 @@
     
     ```
 	[INFO] Results:
-	[INFO]
-	[INFO] Tests run: 14, Failures: 0, Errors: 0, Skipped: 0
-	[INFO]
-	[INFO] ------------------------------------------------------------------------
-	[INFO] BUILD SUCCESS
-	[INFO] ------------------------------------------------------------------------
+    [INFO] Tests run: 15, Failures: 0, Errors: 0, Skipped: 0
     ```
 
   
