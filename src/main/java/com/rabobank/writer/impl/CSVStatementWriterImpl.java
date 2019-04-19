@@ -11,15 +11,17 @@ import org.springframework.stereotype.Component;
 import com.opencsv.CSVWriter;
 import com.opencsv.bean.StatefulBeanToCsv;
 import com.opencsv.bean.StatefulBeanToCsvBuilder;
-import com.rabobank.controller.CustomerStatementController;
 import com.rabobank.domain.CustomerStatements;
 import com.rabobank.repository.CustomerStatementsRepository;
 import com.rabobank.writer.StatementWriter;
 
 @Component(value = "csvwriter")
 public class CSVStatementWriterImpl implements StatementWriter {
-
-	private static final Logger logger = LoggerFactory.getLogger(CustomerStatementController.class);
+	/**
+	 * @author vinesh
+	 *
+	 */
+	private static final Logger logger = LoggerFactory.getLogger(CSVStatementWriterImpl.class);
 
 	@Autowired
 	CustomerStatementsRepository customerStatementsRepository;

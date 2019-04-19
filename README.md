@@ -49,7 +49,7 @@
      -> console will have default connection strings , click connect button 
      -> CUSTOMER_STATEMENTS  is a table name which holds all validated data 
      
-  ####run Junit:   
+  #### run Junit:   
     * mvnw test / mvn test 
 
   

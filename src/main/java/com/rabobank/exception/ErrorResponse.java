@@ -1,5 +1,9 @@
 package com.rabobank.exception;
 
+/**
+ * @author vinesh
+ *
+ */
 public class ErrorResponse {
 
 	private String errorCode;

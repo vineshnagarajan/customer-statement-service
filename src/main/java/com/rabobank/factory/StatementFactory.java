@@ -11,6 +11,11 @@ import com.rabobank.exception.FileFormatException;
 import com.rabobank.reader.StatementReader;
 import com.rabobank.writer.StatementWriter;
 
+/**
+ * @author vinesh
+ *
+ */
+
 @Component
 public class StatementFactory {
 

@@ -18,6 +18,10 @@ import com.rabobank.domain.Record;
 import com.rabobank.domain.Records;
 import com.rabobank.reader.StatementReader;
 
+/**
+ * @author vinesh
+ *
+ */
 @Component
 @Qualifier("csvreader")
 public class CSVStatementReaderImpl implements StatementReader<Records> {
@@ -43,30 +47,9 @@ public class CSVStatementReaderImpl implements StatementReader<Records> {
 			});
 			records.setRecords(customerStatements);
 
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+		} catch (IOException e) {
+			logger.error("IO Exception While reading the statement from CSV", e);
 		}
-
-		/*
-		 * CSVParser parser; try { parser =
-		 * CSVFormat.EXCEL.withHeader().withDelimiter(',') .parse(new
-		 * InputStreamReader(file.getInputStream()));
-		 * 
-		 * parser.forEach(record -> { Record customerRecords = new Record(new
-		 * Long(record.get("Reference")), record.get("AccountNumber"),
-		 * record.get("Description"), new
-		 * BigDecimal(record.get("Start Balance")), new
-		 * BigDecimal(record.get("Mutation")), new
-		 * BigDecimal(record.get("End Balance")));
-		 * 
-		 * customerStatements.add(customerRecords); });
-		 * 
-		 * records.setRecords(customerStatements); }
-		 * 
-		 * catch (IOException e) { logger.error("Exception on Reading CSV file "
-		 * , e); }
-		 */
 
 		return records;
 

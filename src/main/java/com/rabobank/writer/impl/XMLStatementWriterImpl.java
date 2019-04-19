@@ -24,7 +24,10 @@ import com.rabobank.repository.CustomerStatementsRepository;
 import com.rabobank.writer.StatementWriter;
 
 @Component(value = "xmlwriter")
-
+/**
+ * @author vinesh
+ *
+ */
 public class XMLStatementWriterImpl implements StatementWriter {
 	private static final Logger logger = LoggerFactory.getLogger(XMLStatementWriterImpl.class);
 

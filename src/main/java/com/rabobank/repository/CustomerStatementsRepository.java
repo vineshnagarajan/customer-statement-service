@@ -7,9 +7,13 @@ import org.springframework.stereotype.Repository;
 
 import com.rabobank.domain.CustomerStatements;
 
+/**
+ * @author vinesh
+ *
+ */
 @Repository
-public interface CustomerStatementsRepository extends JpaRepository<CustomerStatements,Long>{
-	
+public interface CustomerStatementsRepository extends JpaRepository<CustomerStatements, Long> {
+
 	List<CustomerStatements> findByReference(Long referenceId);
 
 }

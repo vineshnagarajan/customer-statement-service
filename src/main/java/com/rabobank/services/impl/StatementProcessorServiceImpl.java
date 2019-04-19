@@ -16,6 +16,10 @@ import com.rabobank.repository.CustomerStatementsRepository;
 import com.rabobank.services.StatementProcessorService;
 import com.rabobank.services.ValidationService;
 
+/**
+ * @author vinesh
+ *
+ */
 @Service
 public class StatementProcessorServiceImpl implements StatementProcessorService {
 
@@ -34,7 +38,7 @@ public class StatementProcessorServiceImpl implements StatementProcessorService 
 	public void process(MultipartFile file) {
 
 		try {
-			Records statements = (Records) statementFactory.getFileReader(file).readStatement(file);
+			Records statements = statementFactory.getFileReader(file).readStatement(file);
 			statements.getRecords().parallelStream().forEach(record -> {
 
 				validationService.validateEndBalance(record);

@@ -7,7 +7,6 @@ import static org.mockito.Mockito.when;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -22,6 +21,10 @@ import com.rabobank.domain.CustomerStatements;
 import com.rabobank.domain.Record;
 import com.rabobank.repository.CustomerStatementsRepository;
 
+/**
+ * @author vinesh
+ *
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ValidationServiceTest {
@@ -36,7 +39,7 @@ public class ValidationServiceTest {
 
 	private Record emptyRecord = null;
 
-	List<CustomerStatements> resultMatch  = new ArrayList<>();
+	List<CustomerStatements> resultMatch = new ArrayList<>();
 
 	List<CustomerStatements> resultNotMatch = new ArrayList<>();
 
@@ -69,12 +72,6 @@ public class ValidationServiceTest {
 
 		when(customerStatementsRepository.findByReference(any(Long.class))).thenReturn(resultMatch);
 		assertEquals(false, validationService.validateDuplicate(record));
-
-		/*
-		 * MultipartFile multipartFile = new MockMultipartFile("records.csv",
-		 * new FileInputStream(new File("records.csv")));
-		 */
-
 	}
 
 	@Test
@@ -82,7 +79,6 @@ public class ValidationServiceTest {
 
 		when(customerStatementsRepository.findByReference(any(Long.class))).thenReturn(resultNotMatch);
 		assertEquals(true, validationService.validateDuplicate(record));
-
 
 	}
 

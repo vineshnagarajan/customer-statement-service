@@ -11,7 +11,8 @@ import org.apache.commons.io.IOUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.BeanUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,14 +20,19 @@ import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.rabobank.domain.CustomerStatements;
 import com.rabobank.domain.Record;
 import com.rabobank.domain.Records;
 import com.rabobank.factory.StatementFactory;
+import com.rabobank.factory.StatementFactoryTest;
 
+/**
+ * @author vinesh
+ *
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class StatementReaderTest {
+	private static final Logger logger = LoggerFactory.getLogger(StatementFactoryTest.class);
 
 	@Autowired
 	StatementFactory statementFactory;
@@ -45,12 +51,10 @@ public class StatementReaderTest {
 
 	MultipartFile wrongFile;
 
-	private Record record;
-
 	@Before
 	public void init() {
 
-		record = new Record();
+		Record record = new Record();
 		record.setAccountNumber("NL91RABO0315273637");
 		record.setReference(Long.valueOf(194261));
 		record.setDescription("Clothes from Jan Bakker");
@@ -71,7 +75,7 @@ public class StatementReaderTest {
 			wrongFile = new MockMultipartFile("dummy.txt", wrongTestFile.getName(), "text/plain",
 					IOUtils.toByteArray(new FileInputStream(wrongTestFile)));
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 
 	}
@@ -82,7 +86,7 @@ public class StatementReaderTest {
 		assertEquals(Long.valueOf(194261), csvReader.readStatement(csvFile).getRecords().get(0).getReference());
 
 	}
-	
+
 	@Test()
 	public void readStatementXmlTest() {
 

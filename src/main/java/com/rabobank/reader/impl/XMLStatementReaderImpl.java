@@ -10,14 +10,17 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.rabobank.controller.CustomerStatementController;
 import com.rabobank.domain.Records;
 import com.rabobank.reader.StatementReader;
 
+/**
+ * @author vinesh
+ *
+ */
 @Component
 @Qualifier("xmlreader")
 public class XMLStatementReaderImpl implements StatementReader<Records> {
-	private static final Logger logger = LoggerFactory.getLogger(CustomerStatementController.class);
+	private static final Logger logger = LoggerFactory.getLogger(XMLStatementReaderImpl.class);
 
 	@Override
 	public Records readStatement(MultipartFile file) {

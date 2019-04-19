@@ -10,6 +10,10 @@ import com.rabobank.domain.Record;
 import com.rabobank.repository.CustomerStatementsRepository;
 import com.rabobank.services.ValidationService;
 
+/**
+ * @author vinesh
+ *
+ */
 @Component
 public class ValidationServiceImpl implements ValidationService {
 
