@@ -27,6 +27,26 @@
   * JAXB for xml 
   * Swagger for API documentation 
   * Spring Boot maven plugin 
+  * Sl4J for logging 
+
+## Configurations: 
+
+  #### Sl4J : Application.properties
+  logging.level.org.springframework.web=ERROR
+  logging.level.com.rabobank=INFO
+  logging.file=logs/application.log
+  
+  #### H2 DB : Application.properties
+  spring.h2.console.enabled=true
+  spring.h2.console.path=/h2
+  spring.datasource.url=jdbc:h2:file:~/test
+  spring.datasource.username=sa
+  spring.datasource.password=
+  spring.datasource.driver-class-name=org.h2.Driver  
+  
+  #### Junit Test resource file package : src.test.resources
+	  
+	
   
  ## Build & Deployment :
   1) git clone https://github.com/vineshnagarajan/customer-statement-service.git
