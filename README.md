@@ -83,7 +83,7 @@
     
     ```
 	[INFO] Results:
-    [INFO] Tests run: 15, Failures: 0, Errors: 0, Skipped: 0
+    [INFO] Tests run: 17, Failures: 0, Errors: 0, Skipped: 0
     ```
 
   

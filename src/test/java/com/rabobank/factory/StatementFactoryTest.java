@@ -6,8 +6,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-import javax.servlet.http.HttpServletResponse;
-
 import org.apache.commons.io.IOUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,13 +13,20 @@ import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.rabobank.domain.Records;
 import com.rabobank.exception.FileFormatException;
+import com.rabobank.reader.StatementReader;
+import com.rabobank.reader.impl.CSVStatementReaderImpl;
+import com.rabobank.reader.impl.XMLStatementReaderImpl;
+import com.rabobank.writer.StatementWriter;
+import com.rabobank.writer.impl.CSVStatementWriterImpl;
+import com.rabobank.writer.impl.XMLStatementWriterImpl;
 
 /**
  * @author vinesh
@@ -41,7 +46,21 @@ public class StatementFactoryTest {
 
 	MultipartFile wrongFile;
 
-	HttpServletResponse httpServletResponse = new MockHttpServletResponse();
+	@Autowired
+	@Qualifier("csvwriter")
+	StatementWriter csvwriter;
+
+	@Autowired
+	@Qualifier("xmlwriter")
+	StatementWriter xmlwriter;
+
+	@Autowired
+	@Qualifier("csvreader")
+	StatementReader<Records> csvReader;
+
+	@Autowired
+	@Qualifier("xmlreader")
+	StatementReader<Records> xmlReader;
 
 	@Before
 	public void init() {
@@ -65,15 +84,16 @@ public class StatementFactoryTest {
 
 	@Test()
 	public void getFileReaderCsvTest() {
-
-		assertEquals(true, !(statementFactory.getFileReader(csvFile).readStatement(csvFile).getRecords().isEmpty()));
+		assertEquals(true,
+				!(statementFactory.getFileReader(csvFile).getClass().isInstance(CSVStatementReaderImpl.class)));
 
 	}
 
 	@Test()
 	public void getFileReaderXmlTest() {
 
-		assertEquals(true, !(statementFactory.getFileReader(xmlFile).readStatement(xmlFile).getRecords().isEmpty()));
+		assertEquals(true,
+				!(statementFactory.getFileReader(xmlFile).getClass().isInstance(XMLStatementReaderImpl.class)));
 
 	}
 
@@ -92,4 +112,20 @@ public class StatementFactoryTest {
 		statementFactory.getFileWriter(wrongFile);
 
 	}
+
+	@Test()
+	public void getFileWriterCsvTest() {
+		assertEquals(true,
+				!(statementFactory.getFileReader(csvFile).getClass().isInstance(CSVStatementWriterImpl.class)));
+
+	}
+
+	@Test()
+	public void getFileWriterXmlTest() {
+
+		assertEquals(true,
+				!(statementFactory.getFileReader(xmlFile).getClass().isInstance(XMLStatementWriterImpl.class)));
+
+	}
+
 }
