@@ -26,6 +26,16 @@ public class CSVStatementWriterImpl implements StatementWriter {
 	@Autowired
 	CustomerStatementsRepository customerStatementsRepository;
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.rabobank.writer.StatementWriter#writeOutputReport(javax.servlet.http.
+	 * HttpServletResponse)
+	 * 
+	 * This method get records from DB and convert to csv , then write to HTTP
+	 * response
+	 */
 	@Override
 	public void writeOutputReport(HttpServletResponse response) {
 		String filename = "OutputReport.csv";

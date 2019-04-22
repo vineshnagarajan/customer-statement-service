@@ -11,11 +11,17 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 /**
  * @author vinesh
  *
+ *         Global Exception Handler
  */
 
 @ControllerAdvice
 public class RaboExceptionHandler extends ResponseEntityExceptionHandler {
 
+	/**
+	 * @param exception
+	 * @param request
+	 * @return ResponseEntity
+	 */
 	@ExceptionHandler(FileFormatException.class)
 	public ResponseEntity<ErrorResponse> fileTypeUnSupported(Exception ex, WebRequest request) {
 

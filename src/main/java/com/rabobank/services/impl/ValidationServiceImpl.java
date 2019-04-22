@@ -20,6 +20,15 @@ public class ValidationServiceImpl implements ValidationService {
 	@Autowired
 	CustomerStatementsRepository customerStatementsRepository;
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.rabobank.services.ValidationService#validateDuplicate(com.rabobank.
+	 * domain.Record)
+	 * 
+	 * This method validate duplicate reference field in inputfile
+	 */
 	@Override
 	public boolean validateDuplicate(Record record) {
 		if (record != null) {
@@ -30,6 +39,15 @@ public class ValidationServiceImpl implements ValidationService {
 		return false;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.rabobank.services.ValidationService#validateEndBalance(com.rabobank.
+	 * domain.Record)
+	 * 
+	 * this method validates endBalance field in input file
+	 */
 	@Override
 	public boolean validateEndBalance(Record record) {
 

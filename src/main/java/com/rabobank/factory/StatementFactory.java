@@ -13,6 +13,8 @@ import com.rabobank.writer.StatementWriter;
 
 /**
  * @author vinesh
+ * 
+ *         Factory class to invoke concrete implementation
  *
  */
 
@@ -35,6 +37,13 @@ public class StatementFactory {
 	@Qualifier("xmlwriter")
 	StatementWriter xmlwriter;
 
+	/**
+	 * @param inputFile
+	 * @return concrete impl
+	 * 
+	 *         This method return xmlReaderImpl or csvReaderImpl based on file
+	 *         type else throw exception
+	 */
 	public StatementReader<Records> getFileReader(MultipartFile inputFile) {
 		StatementFileType fileType = StatementFileType.getFileType(inputFile.getOriginalFilename());
 		switch (fileType) {
@@ -47,6 +56,13 @@ public class StatementFactory {
 		}
 	}
 
+	/**
+	 * @param inputFile
+	 * @return concrete impl
+	 * 
+	 *         This method return xmlWriterImpl or csvWriterImpl based on file
+	 *         type else throw exception
+	 */
 	public StatementWriter getFileWriter(MultipartFile inputFile) {
 		StatementFileType fileType = StatementFileType.getFileType(inputFile.getOriginalFilename());
 		switch (fileType) {

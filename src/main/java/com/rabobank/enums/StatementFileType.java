@@ -6,7 +6,7 @@ import org.apache.commons.io.FilenameUtils;
  * @author vinesh
  * 
  *         this file used to validate the input and output statement file type.
- *         the file will not be processed if file type not matching
+ *         the file will not be process if file type not matching
  *
  */
 public enum StatementFileType {
@@ -22,6 +22,12 @@ public enum StatementFileType {
 		return fileExtension;
 	}
 
+	/**
+	 * @param inputFilePath
+	 * @return StatementFileType
+	 * 
+	 *         This method is used to identify input file type
+	 */
 	public static StatementFileType getFileType(String inputFilePath) {
 		if (FilenameUtils.isExtension(inputFilePath.toLowerCase(), CSV.getFileExtension())) {
 			return CSV;

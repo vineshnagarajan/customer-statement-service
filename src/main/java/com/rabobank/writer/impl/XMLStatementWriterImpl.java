@@ -28,12 +28,23 @@ import com.rabobank.writer.StatementWriter;
  * @author vinesh
  *
  */
+
 public class XMLStatementWriterImpl implements StatementWriter {
 	private static final Logger logger = LoggerFactory.getLogger(XMLStatementWriterImpl.class);
 
 	@Autowired
 	CustomerStatementsRepository customerStatementsRepository;
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.rabobank.writer.StatementWriter#writeOutputReport(javax.servlet.http.
+	 * HttpServletResponse)
+	 * 
+	 * This method get records from DB and convert to xml , then write to HTTP
+	 * response
+	 */
 	@Override
 	public void writeOutputReport(HttpServletResponse response) {
 		String filename = "OutputReport.xml";

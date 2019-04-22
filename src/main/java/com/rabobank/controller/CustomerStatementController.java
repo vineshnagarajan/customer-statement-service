@@ -29,7 +29,12 @@ public class CustomerStatementController {
 	@Autowired
 	StatementFactory statementFactory;
 
-	@PostMapping("/getValidatedStatement")
+	
+	/**
+	 * @param file
+	 * @param response
+	 */
+	@PostMapping("/getValidatedStatement")	
 	public void getValidatedStatement(@RequestParam("files") MultipartFile file, HttpServletResponse response) {
 		if (file != null) {
 			logger.info("Statement Process Starting");

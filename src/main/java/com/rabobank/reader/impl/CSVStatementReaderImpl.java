@@ -28,6 +28,15 @@ public class CSVStatementReaderImpl implements StatementReader<Records> {
 
 	private static final Logger logger = LoggerFactory.getLogger(CSVStatementReaderImpl.class);
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.rabobank.reader.StatementReader#readStatement(org.springframework.web
+	 * .multipart.MultipartFile)
+	 * 
+	 * this take csv file as input and parse it .
+	 */
 	@Override
 	public Records readStatement(MultipartFile file) {
 		List<Record> customerStatements = new ArrayList<>();

@@ -13,6 +13,7 @@ import javax.persistence.Table;
  * @author vinesh
  *
  */
+
 @Entity
 @Table(name = "CUSTOMER_STATEMENTS")
 public class CustomerStatements {

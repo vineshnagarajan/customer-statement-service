@@ -22,6 +22,15 @@ import com.rabobank.reader.StatementReader;
 public class XMLStatementReaderImpl implements StatementReader<Records> {
 	private static final Logger logger = LoggerFactory.getLogger(XMLStatementReaderImpl.class);
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.rabobank.reader.StatementReader#readStatement(org.springframework.web
+	 * .multipart.MultipartFile)
+	 * 
+	 * this take xml file as input and parse it .
+	 */
 	@Override
 	public Records readStatement(MultipartFile file) {
 		Records statments = null;

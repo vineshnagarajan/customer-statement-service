@@ -34,6 +34,14 @@ public class StatementProcessorServiceImpl implements StatementProcessorService 
 	@Autowired
 	CustomerStatementsRepository customerStatementsRepository;
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.rabobank.services.StatementProcessorService#process(org.
+	 * springframework.web.multipart.MultipartFile)
+	 * 
+	 * This method validate file and store validated records in DB
+	 */
 	@Override
 	public void process(MultipartFile file) {
 
