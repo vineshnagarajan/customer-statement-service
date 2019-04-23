@@ -30,13 +30,11 @@ public class ValidationServiceImpl implements ValidationService {
 	 * This method validate duplicate reference field in inputfile
 	 */
 	@Override
-	public boolean validateDuplicate(Record record) {
+	public void validateDuplicate(Record record) {
 		if (record != null) {
 			List<CustomerStatements> statement = customerStatementsRepository.findByReference(record.getReference());
 			record.setIsUniqueStatement(statement.isEmpty());
-			return record.getIsUniqueStatement();
 		}
-		return false;
 	}
 
 	/*
@@ -49,14 +47,12 @@ public class ValidationServiceImpl implements ValidationService {
 	 * this method validates endBalance field in input file
 	 */
 	@Override
-	public boolean validateEndBalance(Record record) {
+	public void validateEndBalance(Record record) {
 
 		if (record != null
 				&& record.getStartBalance().add(record.getMutation()).compareTo(record.getEndBalance()) == 0) {
 			record.setIsValidEndBalance(true);
-			return record.getIsValidEndBalance();
 		}
-		return false;
 
 	}
 

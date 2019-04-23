@@ -59,11 +59,12 @@ public class ValidationServiceTest {
 		resultMatch.add(statments);
 	}
 
-	@Test
+	@Test(expected = NullPointerException.class)
 	public void validateDuplicateNull() {
 
 		when(customerStatementsRepository.findByReference(any(Long.class))).thenReturn(resultMatch);
-		assertEquals(false, validationService.validateDuplicate(emptyRecord));
+		validationService.validateDuplicate(emptyRecord);
+		assertEquals(false, emptyRecord.getIsUniqueStatement());
 
 	}
 
@@ -71,28 +72,30 @@ public class ValidationServiceTest {
 	public void validateDuplicateAccurate() {
 
 		when(customerStatementsRepository.findByReference(any(Long.class))).thenReturn(resultMatch);
-		assertEquals(false, validationService.validateDuplicate(record));
+		validationService.validateDuplicate(record);
+		assertEquals(false, record.getIsUniqueStatement());
 	}
 
 	@Test
 	public void validateDuplicateInAccurate() {
 
 		when(customerStatementsRepository.findByReference(any(Long.class))).thenReturn(resultNotMatch);
-		assertEquals(true, validationService.validateDuplicate(record));
+		validationService.validateDuplicate(record);
+		assertEquals(true, record.getIsUniqueStatement());
 
 	}
 
-	@Test
+	@Test(expected = NullPointerException.class)
 	public void validateEndBalanceNull() {
-
-		assertEquals(false, validationService.validateEndBalance(emptyRecord));
+		validationService.validateEndBalance(emptyRecord);
+		assertEquals(false, emptyRecord.getIsValidEndBalance());
 
 	}
 
 	@Test
 	public void validateEndBalanceInAccurate() {
-
-		assertEquals(false, validationService.validateEndBalance(record));
+		validationService.validateEndBalance(record);
+		assertEquals(false, record.getIsValidEndBalance());
 
 	}
 
@@ -101,8 +104,8 @@ public class ValidationServiceTest {
 		record.setStartBalance(BigDecimal.valueOf(15));
 		record.setMutation(BigDecimal.valueOf(-5));
 		record.setEndBalance(BigDecimal.valueOf(10));
-
-		assertEquals(true, validationService.validateEndBalance(record));
+		validationService.validateEndBalance(record);
+		assertEquals(true, record.getIsValidEndBalance());
 
 	}
 

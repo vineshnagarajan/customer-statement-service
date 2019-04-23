@@ -70,7 +70,7 @@ public class XMLStatementWriterImpl implements StatementWriter {
 			marshaller.marshal(records, sw);
 			FileCopyUtils.copy(sw.toString(), response.getWriter());
 		} catch (IOException | JAXBException e) {
-			logger.info("Exception on JAB unmarshalling", e);
+			logger.error("Exception on JAB unmarshalling", e);
 
 		}
 	}

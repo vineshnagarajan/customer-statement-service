@@ -50,7 +50,7 @@ public class CSVStatementWriterImpl implements StatementWriter {
 			writer.write(customerStatementsRepository.findAll());
 
 		} catch (Exception e) {
-			logger.info("Excveption on Writing Output", e);
+			logger.error("Excveption on Writing Output", e);
 		}
 	}
 }

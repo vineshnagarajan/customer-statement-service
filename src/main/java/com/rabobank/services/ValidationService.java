@@ -8,8 +8,8 @@ import com.rabobank.domain.Record;
  */
 public interface ValidationService {
 
-	boolean validateDuplicate(Record record);
+	void validateDuplicate(Record record);
 
-	boolean validateEndBalance(Record record);
+	void validateEndBalance(Record record);
 
 }

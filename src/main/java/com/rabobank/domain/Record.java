@@ -33,7 +33,7 @@ public class Record {
 	@CsvBindByName(column = "End Balance")
 	private BigDecimal endBalance;
 	private boolean isValidEndBalance;
-	private Boolean isUniqueStatement;
+	private boolean isUniqueStatement;
 
 	public Record(Long reference, String accountNumber, String description, BigDecimal startBalance,
 			BigDecimal mutation, BigDecimal endBalance) {
@@ -108,11 +108,11 @@ public class Record {
 		this.isValidEndBalance = isValidEndBalance;
 	}
 
-	public Boolean getIsUniqueStatement() {
+	public boolean getIsUniqueStatement() {
 		return isUniqueStatement;
 	}
 
-	public void setIsUniqueStatement(Boolean isUniqueStatement) {
+	public void setIsUniqueStatement(boolean isUniqueStatement) {
 		this.isUniqueStatement = isUniqueStatement;
 	}
 
